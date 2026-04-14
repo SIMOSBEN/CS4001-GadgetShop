@@ -2,6 +2,7 @@ public class MP3 extends Gadget {
 
     private int usedmemory;   // how much music it can hold - USED
     private final int maxMemory;  // TOTAL capacity
+    private int memory;          
 
     public MP3(String model, double price, int weight, String size, int memory) {
         super(model, price, weight, size); // use gadget info
@@ -18,7 +19,7 @@ public class MP3 extends Gadget {
     }
 
     public void downloadMusic(int amount) {   
-        if (amount > 0 && amount <= getAvailableMemory()) {     
+        if (amount <= getAvailableMemory()) {     
             usedmemory += amount;
             System.out.println("Downloaded " + amount + "MB");
         } else {
@@ -26,15 +27,17 @@ public class MP3 extends Gadget {
         }
     }
 
-    public void deleteMusic(int amount) {
-        if (amount <= 0) {
-        System.out.println("Enter a positive amount.");
-        return;
-        }
+    
+    public String downloadMusic() {          
+        return "Downloading music to " + getModel();
+    }
 
-        usedmemory = Math.max(0, usedmemory - amount);
-        System.out.println("Deleted " + amount + "MB");
-    }   
+    public void deleteMusic(int amount) {    
+        if (amount > 0) {
+            usedmemory = Math.min(usedmemory - amount, maxMemory); 
+            System.out.println("Enter a positive amount.");
+        }
+    }
 
     @Override
     public void display() {                   
