@@ -264,178 +264,204 @@ public class GadgetShop extends Application {
 
         // ----------------- BUTTON ACTIONS -----------------
 
-        addMP3Button.setOnAction(e -> { // add MP3
+        addMP3Button.setOnAction(e -> {
             try {
-                MP3 c = new MP3(
-                        mp3ModelField.getText(),
-                        Double.parseDouble(mp3PriceField.getText().trim()),
-                        Integer.parseInt(mp3WeightField.getText().trim()),
-                        mp3SizeField.getText(),
-                        Integer.parseInt(memoryField.getText().trim())
-                );
-                gadgets.add(c);
-                logArea.appendText("MP3 added successfully\n");
-                successSound.play();
+                String model = mp3ModelField.getText().trim();
+                String size = mp3SizeField.getText().trim();
+                if (model.isEmpty() || size.isEmpty()) {
+                    showError("Input Error", "Model and Size cannot be empty.");
+                    return;
+                }
+
+            double price = Double.parseDouble(mp3PriceField.getText().trim());
+            int weight = Integer.parseInt(mp3WeightField.getText().trim());
+            int memory = Integer.parseInt(memoryField.getText().trim());
+
+            if (price <= 0 || weight <= 0 || memory <= 0) {
+                    showError("Input Error", "Price, weight and memory must be positive.");
+                    return;
+            }
+
+            MP3 c = new MP3(model,price,weight,size,memory);
+
+            gadgets.add(c);
+            logArea.appendText("MP3 added successfully\n");
+            successSound.play();
+
             } catch (NumberFormatException ex) {
                 showError("Input Error", "Check price, weight and memory.");
             }
         });
         
-        addMobileButton.setOnAction(e -> { // add mobile
+        addMobileButton.setOnAction(e -> {
             try {
-                Mobile m = new Mobile(
-                        mobileModelField.getText(),
-                        Double.parseDouble(mobilePriceField.getText().trim()),
-                        Integer.parseInt(mobileWeightField.getText().trim()),
-                        mobileSizeField.getText(),
-                        Integer.parseInt(creditField.getText().trim())
-                );
+                String model = mobileModelField.getText().trim();
+                String size = mobileSizeField.getText().trim();
+
+                if (model.isEmpty() || size.isEmpty()) {
+                    showError("Input Error", "Model and Size cannot be empty.");
+                    return;
+                }
+
+                double price = Double.parseDouble(mobilePriceField.getText().trim());
+                int weight = Integer.parseInt(mobileWeightField.getText().trim());
+                int credit = Integer.parseInt(creditField.getText().trim());
+
+                if (price <= 0 || weight <= 0 || credit < 0) {
+                    showError("Input Error", "Invalid numeric values.");
+                    return;
+                }
+
+                Mobile m = new Mobile(model,price,weight,size,credit);
+
                 gadgets.add(m);
                 logArea.appendText("Mobile added successfully\n");
                 successSound.play();
+
             } catch (NumberFormatException ex) {
                 showError("Input Error", "Check price, weight and credit.");
             }
         });
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 7c8f0c4 (Initial coursework upload)
         displayAllButton.setOnAction(e -> { 
             logArea.clear();
             for (int i = 0; i < gadgets.size(); i++) {
                 logArea.appendText(i + ": " + gadgets.get(i).toString() + "\n");
             }
-            logArea.setScrollTop(Double.MAX_VALUE); // auto scroll log
+            logArea.setScrollTop(Double.MAX_VALUE);
         });
 
         displayOneButton.setOnAction(e -> { 
-            int index = getDisplayNumber(); // reuse your helper
+            int index = getDisplayNumber();
             if (index != -1) {
                 logArea.appendText(gadgets.get(index).toString() + "\n");
-                logArea.setScrollTop(Double.MAX_VALUE); // auto scroll log
+                logArea.setScrollTop(Double.MAX_VALUE);
             }
         });
 
         makeCallButton.setOnAction(e -> { 
-        try {
-            int index = getDisplayNumber();
-        if (index == -1) return;
+            try {
+                int index = getDisplayNumber();
+                if (index == -1) return;
 
-        String number = phoneNumberField.getText().trim();
-        if (number.isEmpty()) {
-            showError("Error", "Enter a phone number.");
-            return;
-        }
+                String number = phoneNumberField.getText().trim();
+                if (number.isEmpty()) {
+                    showError("Error", "Enter a phone number.");
+                    return;
+                }
 
-        int duration = Integer.parseInt(durationField.getText().trim());
-        if (duration <= 0) {
-            showError("Error", "Duration must be positive.");
-            return;
-        }
+                int duration = Integer.parseInt(durationField.getText().trim());
+                if (duration <= 0) {
+                    showError("Error", "Duration must be positive.");
+                    return;
+                }
 
-            Object gadget = gadgets.get(index);
-        if (gadget instanceof Mobile mobile) {
-            if (duration > mobile.getCredit()) {  // Add this check
-                showError("Error", "Insufficient credit. Need " + duration + ", have " + mobile.getCredit() + " minutes.");
-                return;
-            }
-            mobile.makeCall(number, duration);
-            logArea.appendText("Calling " + number + " for " + duration + " minutes\n");
-            callSound.play();
-            logArea.setScrollTop(Double.MAX_VALUE);
-            } else {
-                showError("Error", "Selected gadget is not a Mobile.");
-            }
+                Object gadget = gadgets.get(index);
+                if (gadget instanceof Mobile mobile) {
+                    if (duration > mobile.getCredit()) {
+                        showError("Error", "Insufficient credit. Need " + duration + ", have " + mobile.getCredit() + " minutes.");
+                        return;
+                    }
+                    mobile.makeCall(number, duration);
+                    logArea.appendText("Calling " + number + " for " + duration + " minutes\n");
+                    callSound.play();
+                    logArea.setScrollTop(Double.MAX_VALUE);
+                } else {
+                    showError("Error", "Selected gadget is not a Mobile.");
+                }
             } catch (NumberFormatException ex) {
                 showError("Error", "Duration must be integer.");
             } catch (Exception ex) {
                 showError("Error", "Cannot make call.");
-        }
+            }
         });
 
         downloadMusicButton.setOnAction(e -> { 
             try {
-            int index = getDisplayNumber();
-        if (index == -1) return;
+                int index = getDisplayNumber();
+                if (index == -1) return;
 
-            int size = Integer.parseInt(downloadSizeField.getText().trim());
-        if (size <= 0) {
-            showError("Error", "Download size must be positive.");
-            return;
-        }
+                int size = Integer.parseInt(downloadSizeField.getText().trim());
+                if (size <= 0) {
+                    showError("Error", "Download size must be positive.");
+                    return;
+                }
 
-        Object gadget = gadgets.get(index);
-        if (gadget instanceof MP3 mp3) {
-            if (size > mp3.getAvailableMemory()) {  
-                showError("Error", "Not enough memory. Need " + size + "MB, have " + mp3.getAvailableMemory() + "MB.");
-                return;
+                Object gadget = gadgets.get(index);
+                if (gadget instanceof MP3 mp3) {
+                    if (size > mp3.getAvailableMemory()) {
+                        showError("Error", "Not enough memory. Need " + size + "MB, have " + mp3.getAvailableMemory() + "MB.");
+                        return;
+                    }
+                    mp3.downloadMusic(size);
+                    logArea.appendText("Downloaded " + size + "MB\n");
+                    downloadSound.play();
+                    logArea.setScrollTop(Double.MAX_VALUE);
+                } else {
+                    showError("Error", "Selected gadget is not an MP3.");
+                }
+            } catch (NumberFormatException ex) {
+                showError("Error", "Download size must be integer.");
+            } catch (Exception ex) {
+                showError("Error", "Cannot download music.");
             }
-            mp3.downloadMusic(size);
-            logArea.appendText("Downloaded " + size + "MB\n");
-            downloadSound.play();
-            logArea.setScrollTop(Double.MAX_VALUE);
-        } else {
-            showError("Error", "Selected gadget is not an MP3.");
-        }
-        } catch (NumberFormatException ex) {
-            showError("Error", "Download size must be integer.");
-        } catch (Exception ex) {
-            showError("Error", "Cannot download music.");
-        }
         });
 
-        clearButton.setOnAction(e -> { 
+        clearButton.setOnAction(e -> {
             logArea.clear();
             logArea.appendText("Cleared all text fields and log\n");
             logArea.setScrollTop(Double.MAX_VALUE);
 
-            // CLEAR MP3 BOXES
             mp3ModelField.clear();
             mp3PriceField.clear();
             mp3WeightField.clear();
             mp3SizeField.clear();
-                memoryField.clear();
+            memoryField.clear();
             deleteSizeField.clear();
             downloadSizeField.clear();
 
-            // CLEAR MOBILE BOXES
             mobileModelField.clear();
             mobilePriceField.clear();
             mobileWeightField.clear();
             mobileSizeField.clear();
             creditField.clear();
             addCreditField.clear();
-    
-            // CLEAR OTHER INPUTS
+
             phoneNumberField.clear();
             durationField.clear();
             displayNumberField.clear();
         });
-        
-        
+
         deleteDevicesButton.setOnAction(e -> {
-            gadgets.clear(); // delete all gadgets
+            gadgets.clear();
             logArea.appendText("All devices deleted\n");
             logArea.setScrollTop(Double.MAX_VALUE);
-        }); 
+        });
+
         deleteMusicButton.setOnAction(e -> {
-        try {
-            int index = getDisplayNumber();
-            if (index == -1) return;
+            try {
+                int index = getDisplayNumber();
+                if (index == -1) return;
 
-            int amount = Integer.parseInt(deleteSizeField.getText().trim());
-            if (amount <= 0) {
-            showError("Error", "Delete amount must be positive.");
-            return;
-            }
+                int amount = Integer.parseInt(deleteSizeField.getText().trim());
+                if (amount <= 0) {
+                    showError("Error", "Delete amount must be positive.");
+                    return;
+                }
 
-            Object gadget = gadgets.get(index);
-            if (gadget instanceof MP3 mp3) {
-            int usedMemory = mp3.getUsedMemory();  // current used space
-            if (amount > usedMemory) {
-                showError("Error", "Cannot delete " + amount + "MB - only " + usedMemory + "MB songs stored.");
-                return;
-            }
-            mp3.deleteMusic(amount);
-            logArea.appendText("Deleted " + amount + "MB of music\n");
-            logArea.setScrollTop(Double.MAX_VALUE);
+                Object gadget = gadgets.get(index);
+                if (gadget instanceof MP3 mp3) {
+                    int usedMemory = mp3.getUsedMemory();
+                    if (amount > usedMemory) {
+                        showError("Error", "Cannot delete " + amount + "MB - only " + usedMemory + "MB stored.");
+                        return;
+                    }
+                    mp3.deleteMusic(amount);
+                    logArea.appendText("Deleted " + amount + "MB of music\n");
+                    logArea.setScrollTop(Double.MAX_VALUE);
                 } else {
                     showError("Error", "Selected gadget is not an MP3.");
                 }
@@ -447,61 +473,56 @@ public class GadgetShop extends Application {
         });
 
         addCreditButton.setOnAction(e -> {
-        try {
-            int index = getDisplayNumber();
-            if (index == -1) return;
-            if (!(gadgets.get(index) instanceof Mobile mobile)) {
-                showError("Error", "Selected device is not a Mobile.");
-                return;
-            }
+            try {
+                int index = getDisplayNumber();
+                if (index == -1) return;
+
+                if (!(gadgets.get(index) instanceof Mobile mobile)) {
+                    showError("Error", "Selected device is not a Mobile.");
+                    return;
+                }
+
                 int amount = Integer.parseInt(addCreditField.getText().trim());
+
+                if (amount <= 0) {
+                    showError("Error", "Credit must be positive.");
+                    return;
+                }
+
                 mobile.addCredit(amount);
                 logArea.appendText("Added " + amount + " credit minutes\n");
                 successSound.play();
                 logArea.setScrollTop(Double.MAX_VALUE);
+
             } catch (NumberFormatException ex) {
                 showError("Error", "Amount must be integer.");
             }
         });
 
-        // ----------------- ADD EVERYTHING -----------------
         root.getChildren().addAll(
-        mp3Title, mobileTitle,
-
-        // MP3 inputs
-        modelLabel1, mp3ModelField,
-        priceLabel1, mp3PriceField,
-        weightLabel1, mp3WeightField,
-        sizeLabel1, mp3SizeField,
-        memoryLabel, memoryField,
-        deleteSizeLabel, deleteSizeField, deleteMusicButton,
-        addMP3Button,
-
-        // Mobile inputs
-        modelLabel2, mobileModelField,
-        priceLabel2, mobilePriceField,
-        weightLabel2, mobileWeightField,
-        sizeLabel2, mobileSizeField,
-        creditLabel, creditField,
-        addMobileButton,addCreditLabel, 
-        addCreditField, addCreditButton,
-
-
-        // Call / download inputs
-        phoneLabel, phoneNumberField,
-        durationLabel, durationField,
-        downloadLabel, downloadSizeField,
-
-       // Display controls
-        displayLabel, displayNumberField,
-        displayAllButton, displayOneButton,
-        makeCallButton, downloadMusicButton,
-
-        // Clear 
-        clearButton, deleteDevicesButton,
-
-        // Log
-        logArea
+            mp3Title, mobileTitle,
+            modelLabel1, mp3ModelField,
+            priceLabel1, mp3PriceField,
+            weightLabel1, mp3WeightField,
+            sizeLabel1, mp3SizeField,
+            memoryLabel, memoryField,
+            deleteSizeLabel, deleteSizeField, deleteMusicButton,
+            addMP3Button,
+            modelLabel2, mobileModelField,
+            priceLabel2, mobilePriceField,
+            weightLabel2, mobileWeightField,
+            sizeLabel2, mobileSizeField,
+            creditLabel, creditField,
+            addMobileButton, addCreditLabel,
+            addCreditField, addCreditButton,
+            phoneLabel, phoneNumberField,
+            durationLabel, durationField,
+            downloadLabel, downloadSizeField,
+            displayLabel, displayNumberField,
+            displayAllButton, displayOneButton,
+            makeCallButton, downloadMusicButton,
+            clearButton, deleteDevicesButton,
+            logArea
         );
 
         stage.setScene(new Scene(root, 600, 620));
@@ -509,19 +530,19 @@ public class GadgetShop extends Application {
         stage.show();
     }
 
-    private int getDisplayNumber(){ // check display number
+    private int getDisplayNumber() {
         int displayNumber = -1;
 
-        try{
+        try {
             displayNumber = Integer.parseInt(displayNumberField.getText().trim());
 
-            if(displayNumber < 0 || displayNumber >= gadgets.size()){
-                showError("Error","Display number out of range");
+            if (displayNumber < 0 || displayNumber >= gadgets.size()) {
+                showError("Error", "Display number out of range");
                 displayNumber = -1;
             }
 
-        }catch(NumberFormatException e){
-            showError("Error","Display number must be integer");
+        } catch (NumberFormatException e) {
+            showError("Error", "Display number must be integer");
         }
 
         return displayNumber;
@@ -539,5 +560,4 @@ public class GadgetShop extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }

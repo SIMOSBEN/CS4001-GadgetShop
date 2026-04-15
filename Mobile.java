@@ -6,7 +6,7 @@ public class Mobile extends Gadget {
         this.credit = credit;
     }
 
-    public int getCredit() { return credit; }  // say how much credit
+    public int getCredit() { return credit; }  //  how much credit
 
     public void addCredit(int amount) {       // add minutes
         if (amount > 0) {
@@ -29,5 +29,10 @@ public class Mobile extends Gadget {
     public void display() {                               // show mobile info
         super.display();
         System.out.println("Remaining Credit: " + credit + " minutes");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Credit: " + credit + " minutes";
     }
 }
