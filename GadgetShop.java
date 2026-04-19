@@ -77,7 +77,7 @@ public class GadgetShop extends Application {
         mp3ModelField.setLayoutX(100); 
         mp3ModelField.setLayoutY(50);
 
-        Label priceLabel1 = new Label("Price (�):"); 
+        Label priceLabel1 = new Label("Price (\u00A3):"); 
         priceLabel1.setLayoutX(14); 
         priceLabel1.setLayoutY(80); 
        
@@ -151,7 +151,7 @@ public class GadgetShop extends Application {
         mobileModelField.setLayoutX(380); 
         mobileModelField.setLayoutY(50);
 
-        Label priceLabel2 = new Label("Price (�):"); 
+        Label priceLabel2 = new Label("Price (u00A3):"); 
         priceLabel2.setLayoutX(294); 
         priceLabel2.setLayoutY(80); 
         
@@ -175,7 +175,7 @@ public class GadgetShop extends Application {
         mobileSizeField.setLayoutX(380); 
         mobileSizeField.setLayoutY(140);
 
-        Label creditLabel = new Label("Credit (�):"); 
+        Label creditLabel = new Label("Credit (\u00A3):"); 
         creditLabel.setLayoutX(294); 
         creditLabel.setLayoutY(170); 
         
@@ -189,7 +189,7 @@ public class GadgetShop extends Application {
         addMobileButton.setStyle("-fx-background-color:#2196F3; -fx-text-fill:white; -fx-background-radius:8;");
         
         // ----------------- ADD CREDIT -----------------
-        Label addCreditLabel = new Label("Add Credit (�):");
+        Label addCreditLabel = new Label("Add Credit (\u00A3):");
         addCreditLabel.setLayoutX(294); 
         addCreditLabel.setLayoutY(240);
         addCreditLabel.setStyle("-fx-text-fill:white;");
@@ -322,10 +322,7 @@ public class GadgetShop extends Application {
                 showError("Input Error", "Check price, weight and credit.");
             }
         });
-<<<<<<< HEAD
-=======
         
->>>>>>> 7c8f0c4 (Initial coursework upload)
         displayAllButton.setOnAction(e -> { 
             logArea.clear();
             for (int i = 0; i < gadgets.size(); i++) {

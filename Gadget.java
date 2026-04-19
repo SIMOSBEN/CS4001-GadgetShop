@@ -18,13 +18,13 @@ public class Gadget {
 
     public void display() {                      // show info about gadget
         System.out.println("Model: " + model);
-        System.out.println("Price: £" + price);
+        System.out.println("Price: \u00A3" + price);
         System.out.println("Weight: " + weight + "g");
         System.out.println("Size: " + size);
     }
 
     @Override
     public String toString() {                   // show gadget in log
-        return model + " - £" + price + " - " + weight + "g - " + size;
+        return model + " - \u00A3" + price + " - " + weight + "g - " + size;
     }
 }
