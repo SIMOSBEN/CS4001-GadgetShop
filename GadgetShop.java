@@ -151,7 +151,7 @@ public class GadgetShop extends Application {
         mobileModelField.setLayoutX(380); 
         mobileModelField.setLayoutY(50);
 
-        Label priceLabel2 = new Label("Price (u00A3):"); 
+        Label priceLabel2 = new Label("Price (\u00A3):"); 
         priceLabel2.setLayoutX(294); 
         priceLabel2.setLayoutY(80); 
         
@@ -273,20 +273,20 @@ public class GadgetShop extends Application {
                     return;
                 }
 
-            double price = Double.parseDouble(mp3PriceField.getText().trim());
-            int weight = Integer.parseInt(mp3WeightField.getText().trim());
-            int memory = Integer.parseInt(memoryField.getText().trim());
+                double price = Double.parseDouble(mp3PriceField.getText().trim());
+                int weight = Integer.parseInt(mp3WeightField.getText().trim());
+                int memory = Integer.parseInt(memoryField.getText().trim());
 
-            if (price <= 0 || weight <= 0 || memory <= 0) {
+                if (price <= 0 || weight <= 0 || memory <= 0) {
                     showError("Input Error", "Price, weight and memory must be positive.");
                     return;
-            }
+                }
 
-            MP3 c = new MP3(model,price,weight,size,memory);
+                MP3 c = new MP3(model,price,weight,size,memory);
 
-            gadgets.add(c);
-            logArea.appendText("MP3 added successfully\n");
-            successSound.play();
+                gadgets.add(c);
+                logArea.appendText("MP3 added successfully\n");
+                successSound.play();
 
             } catch (NumberFormatException ex) {
                 showError("Input Error", "Check price, weight and memory.");
@@ -329,6 +329,7 @@ public class GadgetShop extends Application {
                 logArea.appendText(i + ": " + gadgets.get(i).toString() + "\n");
             }
             logArea.setScrollTop(Double.MAX_VALUE);
+            successSound.play();
         });
 
         displayOneButton.setOnAction(e -> { 
@@ -336,6 +337,7 @@ public class GadgetShop extends Application {
             if (index != -1) {
                 logArea.appendText(gadgets.get(index).toString() + "\n");
                 logArea.setScrollTop(Double.MAX_VALUE);
+                successSound.play();
             }
         });
 
@@ -365,6 +367,7 @@ public class GadgetShop extends Application {
                     mobile.makeCall(number, duration);
                     logArea.appendText("Calling " + number + " for " + duration + " minutes\n");
                     callSound.play();
+                    successSound.play();
                     logArea.setScrollTop(Double.MAX_VALUE);
                 } else {
                     showError("Error", "Selected gadget is not a Mobile.");
@@ -430,12 +433,15 @@ public class GadgetShop extends Application {
             phoneNumberField.clear();
             durationField.clear();
             displayNumberField.clear();
+
+            successSound.play();
         });
 
         deleteDevicesButton.setOnAction(e -> {
             gadgets.clear();
             logArea.appendText("All devices deleted\n");
             logArea.setScrollTop(Double.MAX_VALUE);
+            successSound.play();
         });
 
         deleteMusicButton.setOnAction(e -> {
@@ -459,6 +465,7 @@ public class GadgetShop extends Application {
                     mp3.deleteMusic(amount);
                     logArea.appendText("Deleted " + amount + "MB of music\n");
                     logArea.setScrollTop(Double.MAX_VALUE);
+                    successSound.play();
                 } else {
                     showError("Error", "Selected gadget is not an MP3.");
                 }
