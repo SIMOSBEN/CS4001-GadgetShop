@@ -1,0 +1,33 @@
+*.class
+# Java
+*.class
+*.jar
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Mac system files
+.DS_Store
+
+# Build folders
+out/
+bin/
+target/
+# Java
+*.class
+*.jar
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Mac system files
+.DS_Store
+
+# Build folders
+out/
+bin/
+target/
