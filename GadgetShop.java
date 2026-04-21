@@ -134,8 +134,8 @@ public class GadgetShop extends Application {
         downloadMusicButton.setLayoutY(270);
         downloadMusicButton.setStyle("-fx-background-color:#9C27B0; -fx-text-fill:white; -fx-background-radius:8;");
         
-        Label downloadLabel = new Label("Download:");
-        downloadLabel.setLayoutX(14); 
+        Label downloadLabel = new Label("Download (MB):");
+        downloadLabel.setLayoutX(10); 
         downloadLabel.setLayoutY(240); 
         
         downloadLabel.setStyle("-fx-text-fill:white;");
