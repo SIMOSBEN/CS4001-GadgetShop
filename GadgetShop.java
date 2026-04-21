@@ -264,7 +264,7 @@ public class GadgetShop extends Application {
 
         // ----------------- BUTTON ACTIONS -----------------
 
-        addMP3Button.setOnAction(e -> {
+        addMP3Button.setOnAction(e -> {     //ADD MP3
             try {
                 String model = mp3ModelField.getText().trim();
                 String size = mp3SizeField.getText().trim();
