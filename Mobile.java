@@ -6,7 +6,7 @@ public class Mobile extends Gadget {
         this.credit = credit;
     }
 
-    public int getCredit() { return creditclear; }  //  how much credit
+    public int getCredit() { return credit; }  //  how much credit
 
     public void addCredit(int amount) {       // add minutes
         if (amount > 0) {
