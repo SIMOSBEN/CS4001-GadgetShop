@@ -293,7 +293,7 @@ public class GadgetShop extends Application {
             }
         });
         
-        addMobileButton.setOnAction(e -> {
+        addMobileButton.setOnAction(e -> {  //ADD MOBILE
             try {
                 String model = mobileModelField.getText().trim();
                 String size = mobileSizeField.getText().trim();
@@ -323,7 +323,7 @@ public class GadgetShop extends Application {
             }
         });
         
-        displayAllButton.setOnAction(e -> { 
+        displayAllButton.setOnAction(e -> { //DISPLAY ALL
             logArea.clear();
             for (int i = 0; i < gadgets.size(); i++) {
                 logArea.appendText(i + ": " + gadgets.get(i).toString() + "\n");
@@ -332,7 +332,7 @@ public class GadgetShop extends Application {
             successSound.play();
         });
 
-        displayOneButton.setOnAction(e -> { 
+        displayOneButton.setOnAction(e -> {     //DISPLAY ONE
             int index = getDisplayNumber();
             if (index != -1) {
                 logArea.appendText(gadgets.get(index).toString() + "\n");
@@ -341,7 +341,7 @@ public class GadgetShop extends Application {
             }
         });
 
-        makeCallButton.setOnAction(e -> { 
+        makeCallButton.setOnAction(e -> {   //MAKE CALL
             try {
                 int index = getDisplayNumber();
                 if (index == -1) return;
@@ -359,7 +359,7 @@ public class GadgetShop extends Application {
                 }
 
                 Object gadget = gadgets.get(index);
-                if (gadget instanceof Mobile mobile) {
+                if (gadget instanceof Mobile mobile) { 
                     if (duration > mobile.getCredit()) {
                         showError("Error", "Insufficient credit. Need " + duration + ", have " + mobile.getCredit() + " minutes.");
                         return;
@@ -379,7 +379,7 @@ public class GadgetShop extends Application {
             }
         });
 
-        downloadMusicButton.setOnAction(e -> { 
+        downloadMusicButton.setOnAction(e -> {  //DOWNLOAD MUSIC
             try {
                 int index = getDisplayNumber();
                 if (index == -1) return;
@@ -410,7 +410,7 @@ public class GadgetShop extends Application {
             }
         });
 
-        clearButton.setOnAction(e -> {
+        clearButton.setOnAction(e -> {  //CLEAR
             logArea.clear();
             logArea.appendText("Cleared all text fields and log\n");
             logArea.setScrollTop(Double.MAX_VALUE);
@@ -437,14 +437,14 @@ public class GadgetShop extends Application {
             successSound.play();
         });
 
-        deleteDevicesButton.setOnAction(e -> {
+        deleteDevicesButton.setOnAction(e -> {  //DELETE DEVICES
             gadgets.clear();
             logArea.appendText("All devices deleted\n");
             logArea.setScrollTop(Double.MAX_VALUE);
             successSound.play();
         });
 
-        deleteMusicButton.setOnAction(e -> {
+        deleteMusicButton.setOnAction(e -> {    //DELETE MUSIC
             try {
                 int index = getDisplayNumber();
                 if (index == -1) return;
@@ -476,7 +476,7 @@ public class GadgetShop extends Application {
             }
         });
 
-        addCreditButton.setOnAction(e -> {
+        addCreditButton.setOnAction(e -> {  //ADD CREDIT
             try {
                 int index = getDisplayNumber();
                 if (index == -1) return;
