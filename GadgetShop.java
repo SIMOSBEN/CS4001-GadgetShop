@@ -70,7 +70,7 @@ public class GadgetShop extends Application {
 
         // ----------------- MP3 INPUTS -----------------
         Label modelLabel1 = new Label("Model:"); 
-        modelLabel1.setLayoutX(14); 
+        modelLabel1.setLayoutX(12); 
         modelLabel1.setLayoutY(50); 
         
         modelLabel1.setStyle("-fx-text-fill:white;");
@@ -78,7 +78,7 @@ public class GadgetShop extends Application {
         mp3ModelField.setLayoutY(50);
 
         Label priceLabel1 = new Label("Price (\u00A3):"); 
-        priceLabel1.setLayoutX(14); 
+        priceLabel1.setLayoutX(12); 
         priceLabel1.setLayoutY(80); 
        
         priceLabel1.setStyle("-fx-text-fill:white;");
@@ -86,7 +86,7 @@ public class GadgetShop extends Application {
         mp3PriceField.setLayoutY(80);
 
         Label weightLabel1 = new Label("Weight (g):"); 
-        weightLabel1.setLayoutX(14); 
+        weightLabel1.setLayoutX(12); 
         weightLabel1.setLayoutY(110); 
         
         weightLabel1.setStyle("-fx-text-fill:white;");
@@ -94,7 +94,7 @@ public class GadgetShop extends Application {
         mp3WeightField.setLayoutY(110);
 
         Label sizeLabel1 = new Label("Size (10x10x10):"); 
-        sizeLabel1.setLayoutX(12); 
+        sizeLabel1.setLayoutX(8); 
         sizeLabel1.setLayoutY(140); 
         
         sizeLabel1.setStyle("-fx-text-fill:white;");
@@ -102,7 +102,7 @@ public class GadgetShop extends Application {
         mp3SizeField.setLayoutY(140);
 
         Label memoryLabel = new Label("Memory (MB):"); 
-        memoryLabel.setLayoutX(14); 
+        memoryLabel.setLayoutX(12); 
         memoryLabel.setLayoutY(170); 
         
         memoryLabel.setStyle("-fx-text-fill:white;");
@@ -110,7 +110,7 @@ public class GadgetShop extends Application {
         memoryField.setLayoutY(170);
 
         Label deleteSizeLabel = new Label("Delete Size (MB):");
-        deleteSizeLabel.setLayoutX(10);
+        deleteSizeLabel.setLayoutX(8);
         deleteSizeLabel.setLayoutY(310);
         deleteSizeLabel.setStyle("-fx-text-fill:white;");
 
@@ -135,7 +135,7 @@ public class GadgetShop extends Application {
         downloadMusicButton.setStyle("-fx-background-color:#9C27B0; -fx-text-fill:white; -fx-background-radius:8;");
         
         Label downloadLabel = new Label("Download (MB):");
-        downloadLabel.setLayoutX(10); 
+        downloadLabel.setLayoutX(8); 
         downloadLabel.setLayoutY(240); 
         
         downloadLabel.setStyle("-fx-text-fill:white;");
@@ -168,7 +168,7 @@ public class GadgetShop extends Application {
         mobileWeightField.setLayoutY(110);
 
         Label sizeLabel2 = new Label("Size (10x10x10):"); 
-        sizeLabel2.setLayoutX(292); 
+        sizeLabel2.setLayoutX(290); 
         sizeLabel2.setLayoutY(140); 
         
         sizeLabel2.setStyle("-fx-text-fill:white;");
